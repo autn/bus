@@ -25,3 +25,16 @@ services:
       MYSQL_ROOT_HOST: '%'
     ports:
       - '9101:3306'
+
+  web_server_non_ssl:
+    image: kun391/phpup:1.0
+    volumes:
+      - .:/var/www/app
+    working_dir: /var/www/app/
+    ports:
+      - '9105:80'
+    depends_on:
+      - db_server
+    environment:
+      - PHP_MEM_LIMIT=4048M
+      - COMPOSER_MEMORY_LIMIT=4048M
